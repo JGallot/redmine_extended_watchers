@@ -22,7 +22,7 @@ module ExtendedWatchersControllerPatch
   def users_for_new_watcher
     scope = nil
     if params[:q].blank? && @project.present?
-      scope = @project.principals.assignable_watchers
+      scope = @project.principals.assignable_watchers.limit(100)
     else
       scope = Principal.assignable_watchers.limit(100)
     end
